@@ -6,9 +6,16 @@ project(
 )
 version = '1.0.0 v2022'
 
+# catch2 Unit testing
 catch2_dep = dependency(
                 'catch2',
                 fallback: ['catch2', 'catch2_dep']
+)
+
+# sqlite3 support
+sqlite3_dep = dependency(
+                'sqlite3',
+                fallback: ['sqlite3', 'sqlite3_dep']
 )
 
 subdir('libsqlite3')

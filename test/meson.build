@@ -5,7 +5,7 @@ test_sources = [
 
 test_dependencies = [
     catch2_dep,
-    cpp_libsqlite3_dep,
+    sqlite3pp_dep,
 ]
 
 testexe = executable('testexe', test_sources,

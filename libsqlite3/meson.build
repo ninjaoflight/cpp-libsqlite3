@@ -1,17 +1,24 @@
-cpp_libsqlite3_incl = include_directories('include')
+#################################################################
+# Shared configuration between the implementation and the API
+#################################################################
 
-cpp_libsqlite3_srcs = []
-cpp_libsqlite3_args = []
-cpp_libsqlite3_link = []
-cpp_libsqlite3_deps = []
+## Public and private includes
+cpp_libsqlite3_public_incl = include_directories('public/include')
+cpp_libsqlite3_private_incl = include_directories('private/include')
+## Shared includes
+cpp_libsqlite3_shared_incl = [
+]
+cpp_libsqlite3_shared_args = []
+# all non public libraries should be wrapped in the implementation
+cpp_libsqlite3_shared_libs = []
+cpp_libsqlite3_shared_deps = []
 
-cpp_libsqlite3_lib = library('sqlite3pp',
-                        cpp_libsqlite3_srcs,
-                        include_directories : [cpp_libsqlite3_incl],
-                        cpp_args: cpp_libsqlite3_args,
-                        dependencies : cpp_libsqlite3_deps)
+# all shared includes should be in the shared directory
+#subdir('shared')
+subdir('private')
+subdir('public')
 
-cpp_libsqlite3_dep = declare_dependency(
-    link_with: cpp_libsqlite3_lib,
-    include_directories: cpp_libsqlite3_incl,
-)
+
+sqlite3pp_dep = declare_dependency(
+                    link_with: cpp_libsqlite3_lib,
+                    include_directories: cpp_libsqlite3_public_incl)
